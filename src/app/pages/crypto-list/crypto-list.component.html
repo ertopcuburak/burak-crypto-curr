@@ -1,0 +1,37 @@
+<ng-container *ngIf="list && list.length > 0">
+    <cdk-virtual-scroll-viewport appendOnly itemSize="{{list.length}}" class="example-viewport">
+        <div *cdkVirtualFor="let item of list" class="example-item">
+            <mat-card>
+                <mat-card-header (click)="showDetails(item)" class="clickable-header">
+                    <img mat-card-avatar [src]="item.image">
+                    <mat-card-title>
+                        <span>{{item.name}}</span>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        <div class="container-fluid p-0">
+                            <div class="row p-0">
+                                <div class="col-12 pl-4">
+                                    <b>Current Price: </b>{{item.current_price | number : '1.2-2'}} {{ (selectedFiatCurr ? selectedFiatCurr :'usd') | uppercase }}
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="container-fluid">
+                        <div class="row text-end">
+                            <div class="col-12">
+                                <b>Change(%): </b>{{ item.price_change_percentage_24h*100 | number : '1.1-1'}} {{'%'}}
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <!-- <a href="javascript:;" (click)="getDetails(item.id)">{{item.name}}</a> -->
+        </div>
+    </cdk-virtual-scroll-viewport>
+</ng-container>
+
+<ng-container *ngIf="!list || list.length === 0">
+    <i>Please wait, data is not ready yet...</i>
+</ng-container>

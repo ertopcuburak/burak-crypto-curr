@@ -1,0 +1,31 @@
+<div class="row p-0 m-0 text-center">
+    <div class="col-12">
+        Burak CryptoCurr HW
+    </div>
+</div>
+<div *ngIf="fiatCurrs && fiatCurrs.length > 0" class="row p-0 mt-2 mb-4 text-center">
+    <div class="col-12">
+        <mat-form-field appearance="fill">
+            <mat-label>Fiat Currency</mat-label>
+            <mat-select [formControl]="controlFiatCurr" (selectionChange)="fiatCurrSelected($event)">
+                <mat-option *ngFor="let fiatCurr of fiatCurrs" [value]="fiatCurr.id">
+                    {{fiatCurr.id + ' - ' + fiatCurr.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<div class="row p-0 m-0 text-justify">
+    <div class="col pl-2 m-0">
+        <ng-container *ngIf="!isCryptoCurrsLoading">
+            <crypto-list [list]="cryptoCurrs" [selectedFiatCurr]="selectedFiatCurr" (cryptoCurrSelected)="itemSelectedForDetails($event)"></crypto-list>
+        </ng-container>
+        <ng-container *ngIf="isCryptoCurrsLoading">
+            <i>Loading.Please wait...</i>
+        </ng-container>
+    </div>
+    <div class="col pl-2 m-0">
+        <crypto-details *ngIf="!isCryptoCurrsLoading && selectedCryptoCurr" [selectedItem]="selectedCryptoCurr" [selectedFiatCurr]="selectedFiatCurr"></crypto-details>
+    </div>
+    
+</div>

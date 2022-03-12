@@ -1,0 +1,104 @@
+<ng-container *ngIf="selectedItem">
+    <mat-card class="details-card">
+        <mat-card-header class="details-card-header">
+            <img mat-card-avatar [src]="selectedItem.image">
+            <mat-card-title>
+                <span>{{selectedItem.name}}</span>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <div class="container-fluid p-0">
+                    <div class="row p-0">
+                        <div class="col-12 pl-4">
+                            <b>Current Price: </b>{{selectedItem.current_price | number : '1.2-2'}} {{ (selectedFiatCurr ? selectedFiatCurr :'usd') | uppercase}}
+                        </div>
+                    </div>
+                </div>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="details-card-content">
+            <div class="container-fluid p-0 m-0">
+                <div class="row p-0 m-0">
+                    <div class="col p-0 m-0">
+                        <div class="prop-label">Symbol:</div>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col pl-1 m-0">
+                        {{selectedItem.symbol | uppercase}}
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col p-0 m-0">
+                        <div class="prop-label">Highest Price in 24h:</div>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col pl-1 m-0">
+                        <ng-container *ngIf="selectedItem.high_24h">
+                            {{selectedItem.high_24h | number : '1.2-2'}} {{ (selectedFiatCurr ? selectedFiatCurr :'usd') | uppercase}}
+                        </ng-container>
+                        <ng-container *ngIf="!selectedItem.low_24h">
+                            {{'N/A'}}
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col p-0 m-0">
+                        <div class="prop-label">Lowest Price in 24h:</div>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col pl-1 m-0">
+                        <ng-container *ngIf="selectedItem.low_24h">
+                            {{selectedItem.low_24h | number : '1.2-2'}} {{ (selectedFiatCurr ? selectedFiatCurr :'usd') | uppercase}}
+                        </ng-container>
+                        <ng-container *ngIf="!selectedItem.low_24h">
+                            {{'N/A'}}
+                        </ng-container>
+                    </div>
+                </div>
+                
+                <div class="row p-0 m-0">
+                    <div class="col p-0 m-0">
+                        <div class="prop-label">Market Cap Rank:</div>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col pl-1 m-0">
+                        {{selectedItem.market_cap_rank ? selectedItem.market_cap_rank : 'N/A'}}
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col p-0 m-0">
+                        <div class="prop-label">Max Supply:</div>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col pl-1 m-0">
+                        {{selectedItem.max_supply ? selectedItem.max_supply : 'N/A'}}
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col p-0 m-0">
+                        <div class="prop-label">Total Supply:</div>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col pl-1 m-0">
+                        {{selectedItem.total_supply ? selectedItem.total_supply : 'N/A'}}
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col p-0 m-0">
+                        <div class="prop-label">Total Volume:</div>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col pl-1 m-0">
+                        {{selectedItem.total_volume ? selectedItem.total_volume : 'N/A'}}
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
